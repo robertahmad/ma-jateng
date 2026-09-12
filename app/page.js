@@ -117,23 +117,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STAT BAR */}
-      <div className="stat-bar">
-        <div className="stat-item">
-          <div className="stat-number">{counts.lembaga}+</div>
-          <div className="stat-label">Lembaga Pendidikan</div>
+      {/* BARIS BANOM (Badan Otonom) */}
+      <div style={{ background: 'var(--emas)', padding: '2rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', boxShadow: 'inset 0 4px 15px rgba(0,0,0,0.05)' }}>
+        <div style={{ fontWeight: 800, color: 'var(--hijau-tua)', letterSpacing: '0.15em', fontSize: '0.9rem', textTransform: 'uppercase', opacity: 0.8 }}>
+          Badan Otonom & Lembaga
         </div>
-        <div className="stat-item">
-          <div className="stat-number">{counts.madrasah}+</div>
-          <div className="stat-label">Madrasah Aktif</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-number">{counts.anggota.toLocaleString()}+</div>
-          <div className="stat-label">Anggota & Kader</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-number">{counts.tahun}+</div>
-          <div className="stat-label">Tahun Pengabdian</div>
+        
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem', alignItems: 'center', maxWidth: '1000px' }}>
+          {/* Item Banom 1 */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
+            <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
+              <img src="/banom-muslimat.png" alt="Muslimat MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>MUSLIMAT</div>
+            </div>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>Muslimat MA</span>
+          </div>
+
+          {/* Item Banom 2 */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
+            <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
+              <img src="/banom-pemuda.png" alt="Pemuda MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>PEMUDA</div>
+            </div>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>Pemuda MA</span>
+          </div>
+
+          {/* Item Banom 3 */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
+            <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
+              <img src="/banom-hima.png" alt="HIMA MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>HIMA</div>
+            </div>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>HIMA</span>
+          </div>
+
+          {/* Item Banom 4 */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
+            <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
+              <img src="/banom-gema.png" alt="GEMA MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>GEMA</div>
+            </div>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>GEMA</span>
+          </div>
         </div>
       </div>
 
