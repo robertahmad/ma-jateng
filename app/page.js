@@ -82,7 +82,7 @@ export default function Home() {
           border: '1px solid rgba(255,255,255,0.1)',
           maxWidth: '600px',
           textAlign: 'left',
-          flex: '1 1 500px'
+          flex: '1 1 min(100%, 500px)'
         }}>
           <div className="hero-badge" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)', margin: '0 0 1.5rem 0', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.3)', padding: '0.4rem 1rem', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <img src="/logo-ma.png" alt="Logo MA" style={{ height: '18px', objectFit: 'contain' }} />
@@ -138,10 +138,10 @@ export default function Home() {
       </div>
 
       {/* VISI MISI SINGKAT */}
-      <section className="section">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
-            <div>
+        <section className="section">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
               <div className="section-tag">Tentang Kami</div>
               <h2 className="section-title">Terbitnya Cahaya untuk Jawa Tengah</h2>
               <p style={{ color: 'var(--teks-abu)', lineHeight: 1.8, marginBottom: '1.5rem' }}>
