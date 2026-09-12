@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import prisma from '@/lib/prisma'
+import RuangKader from '@/components/RuangKader'
 
 export const revalidate = 60
 
@@ -84,29 +85,7 @@ export default async function DokumenList() {
               Area ini berisi dokumen internal seperti AD/ART, Surat Edaran Khusus, dan Modul Pelatihan. Silakan masukkan kata sandi rahasia cabang untuk membuka gembok.
             </p>
             
-            {/* Simulasi Form Password */}
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', maxWidth: '400px' }}>
-              <input type="password" placeholder="Masukkan Sandi Akses..." style={{ flex: 1, padding: '0.75rem 1rem', borderRadius: '8px', border: 'none', outline: 'none' }} />
-              <button style={{ background: 'var(--emas)', color: 'var(--hijau-tua)', fontWeight: 700, border: 'none', padding: '0 1.5rem', borderRadius: '8px', cursor: 'pointer' }}>Buka Akses</button>
-            </div>
-
-            {/* List Dokumen Rahasia (Disamarkan) */}
-            <div style={{ opacity: 0.6, pointerEvents: 'none' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
-                {(rahasia.length > 0 ? rahasia : [1,2,3]).map((doc, i) => (
-                  <div key={i} style={{ background: 'rgba(255,255,255,0.05)', border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '12px', padding: '1.25rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <LockIcon />
-                    <div style={{ flex: 1 }}>
-                      <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', marginBottom: '0.3rem' }}>
-                        {doc.judul || 'Dokumen Internal Terenkripsi'}
-                      </h3>
-                      <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Terkunci 🔒</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+            <RuangKader dokumen={rahasia} />
           </div>
         </div>
 
