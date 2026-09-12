@@ -127,8 +127,8 @@ export default function Home() {
           {/* Item Banom 1 */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
             <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
-              <img src="/banom-muslimat.png" alt="Muslimat MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>MUSLIMAT</div>
+              <img src="/banom-muslimat.jpg" alt="Muslimat MA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>MUSLIMAT</div>
             </div>
             <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>Muslimat MA</span>
           </div>
@@ -136,28 +136,28 @@ export default function Home() {
           {/* Item Banom 2 */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
             <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
-              <img src="/banom-pemuda.png" alt="Pemuda MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>PEMUDA</div>
+              <img src="/banom-gema.jpg" alt="GEMA MA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>GEMA</div>
             </div>
-            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>Pemuda MA</span>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>GEMA MA</span>
           </div>
 
           {/* Item Banom 3 */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
             <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
-              <img src="/banom-hima.png" alt="HIMA MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>HIMA</div>
+              <img src="/banom-lp3h.jpg" alt="LP3H" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LP3H</div>
             </div>
-            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>HIMA</span>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>LP3H</span>
           </div>
 
           {/* Item Banom 4 */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
             <div style={{ width: '85px', height: '85px', background: 'rgba(255,255,255,0.4)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(26,92,42,0.15)', border: '3px solid rgba(255,255,255,0.6)', overflow: 'hidden' }}>
-              <img src="/banom-gema.png" alt="GEMA MA" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>LOGO<br/>GEMA</div>
+              <img src="/banom-unma.jpg" alt="UNMA Banten" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+              <div style={{ display: 'none', fontWeight: 800, color: 'var(--hijau-tua)', fontSize: '0.8rem', textAlign: 'center' }}>UNMA</div>
             </div>
-            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>GEMA</span>
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--hijau-tua)' }}>UNMA Banten</span>
           </div>
         </div>
       </div>
