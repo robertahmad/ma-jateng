@@ -1,0 +1,208 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  nama      String
+  createdAt DateTime @default(now())
+
+  @@map("ma_Admin")
+}
+
+model Berita {
+  id          Int      @id @default(autoincrement())
+  judul       String
+  slug        String   @unique
+  ringkasan   String
+  isi         String   @db.Text
+  thumbnail   String?
+  kategori    String   @default("Umum")
+  diterbitkan Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("ma_Berita")
+}
+
+model Agenda {
+  id          Int      @id @default(autoincrement())
+  judul       String
+  deskripsi   String   @db.Text
+  tanggalMulai DateTime
+  tanggalSelesai DateTime?
+  lokasi      String
+  penyelenggara String?
+  createdAt   DateTime @default(now())
+
+  @@map("ma_Agenda")
+}
+
+model Galeri {
+  id        Int      @id @default(autoincrement())
+  judul     String
+  foto      String?  // Untuk URL Foto atau Thumbnail Video
+  jenis     String   @default("Foto") // Foto / Video
+  linkVideo String?  // Untuk URL YouTube
+  album     String   @default("Umum")
+  keterangan String?
+  createdAt DateTime @default(now())
+
+  @@map("ma_Galeri")
+}
+
+model Lembaga {
+  id        Int    @id @default(autoincrement())
+  nama      String
+  jenjang   String // RA, MI, MTs, MA, PAUD
+  kabupaten String
+  kecamatan String?
+  alamat    String
+  telepon   String?
+  kepala    String?
+  status    String @default("Aktif")
+
+  @@map("ma_Lembaga")
+}
+
+model Dokumen {
+  id        Int      @id @default(autoincrement())
+  judul     String
+  file      String
+  kategori  String   @default("Umum")
+  ukuran    String?
+  rahasia   Boolean  @default(false) // FITUR 4: Jika true, hanya bisa dibuka di Ruang Kader dengan Password
+  createdAt DateTime @default(now())
+
+  @@map("ma_Dokumen")
+}
+
+model Pengurus {
+  id      Int    @id @default(autoincrement())
+  nama    String
+  jabatan String
+  bidang  String @default("Pengurus Inti")
+  foto    String?
+  urutan  Int    @default(0)
+
+  @@map("ma_Pengurus")
+}
+
+model Pengaturan {
+  id    Int    @id @default(autoincrement())
+  kunci String @unique
+  nilai String @db.Text
+
+  @@map("ma_Pengaturan")
+}
+
+// ==========================================
+// FITUR KHUSUS 1: PENDAFTARAN ANGGOTA & KTA
+// ==========================================
+model Anggota {
+  id              Int      @id @default(autoincrement())
+  nik             String   @unique
+  namaLengkap     String
+  tempatLahir     String
+  tanggalLahir    DateTime
+  jenisKelamin    String   // Laki-laki / Perempuan
+  alamatLengkap   String   @db.Text
+  kabupaten       String   // Pengurus Daerah / Cabang
+  noWhatsApp      String
+  pekerjaan       String?
+  pasFoto         String?  // Link foto untuk KTA
+  status          String   @default("PENDING") // PENDING, DITERIMA, DITOLAK
+  nomorKTA        String?  @unique // Dibuat otomatis saat DITERIMA
+  tanggalDaftar   DateTime @default(now())
+
+  @@map("ma_Anggota")
+}
+
+// ==========================================
+// FITUR KHUSUS 2: DONASI & INFAQ ONLINE
+// ==========================================
+model ProgramDonasi {
+  id           Int      @id @default(autoincrement())
+  judul        String
+  slug         String   @unique
+  deskripsi    String   @db.Text
+  kategori     String   @default("UMUM") // ZAKAT, INFAQ, WAKAF, HIBAH, UMUM
+  gambar       String?
+  targetDana   BigInt   @default(0)
+  terkumpul    BigInt   @default(0)
+  status       String   @default("AKTIF") // AKTIF, SELESAI
+  rekeningBank String   @db.Text // JSON string informasi rekening/QRIS
+  createdAt    DateTime @default(now())
+  
+  donatur      Donatur[]
+
+
+  @@map("ma_ProgramDonasi")
+}
+
+model Donatur {
+  id               Int           @id @default(autoincrement())
+  programId        Int
+  program          ProgramDonasi @relation(fields: [programId], references: [id], onDelete: Cascade)
+  nama             String        @default("Hamba Allah")
+  nominal          BigInt
+  tanggalTransfer  DateTime
+  buktiTransfer    String?
+  pesanDoa         String?       @db.Text
+  status           String        @default("PENDING") // PENDING, TERVERIFIKASI
+  @@map("ma_Donatur")
+}
+
+// ==========================================
+// FITUR KHUSUS 3: LAYANAN UMAT & MIMBAR
+// ==========================================
+model TanyaJawab {
+  id         Int      @id @default(autoincrement())
+  nama       String
+  kontak     String   // WhatsApp / Email
+  pertanyaan String   @db.Text
+  jawaban    String?  @db.Text
+  status     String   @default("PENDING") // PENDING, DIJAWAB
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("ma_TanyaJawab")
+}
+
+model Khutbah {
+  id        Int      @id @default(autoincrement())
+  judul     String
+  penulis   String
+  fileUrl   String   // Link PDF atau Word
+  tanggal   DateTime @default(now())
+
+  @@map("ma_Khutbah")
+}
+
+// ==========================================
+// FITUR KHUSUS 4: LAYANAN HALAL (LP3H)
+// ==========================================
+model PendaftaranLP3H {
+  id           Int      @id @default(autoincrement())
+  namaLengkap  String
+  kontak       String   // WhatsApp
+  namaUsaha    String?  // Opsional (kosong jika daftar pelatihan P3H)
+  jenisLayanan String   // Enum: "PELATIHAN_P3H", "SERTIFIKASI_HALAL", "PEMBUATAN_NIB"
+  alamat       String   @db.Text
+  status       String   @default("PENDING") // PENDING, PROSES_BERKAS, SELESAI
+  catatanAdmin String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("ma_PendaftaranLP3H")
+}
