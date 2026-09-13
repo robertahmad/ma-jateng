@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 export async function PATCH(request, { params }) {
   try {
-    const id = parseInt(params.id)
+    const id = parseInt((await params).id)
     const data = await request.json()
     const result = await prisma.pendaftaranLP3H.update({
       where: { id },
@@ -22,7 +22,7 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const id = parseInt(params.id)
+    const id = parseInt((await params).id)
     await prisma.pendaftaranLP3H.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error) {

@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 export async function DELETE(request, { params }) {
   try {
-    const id = parseInt(params.id)
+    const id = parseInt((await params).id)
     await prisma.khutbah.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error) {

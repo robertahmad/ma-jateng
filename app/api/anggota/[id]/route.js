@@ -4,7 +4,8 @@ import { NextResponse } from 'next/server'
 // Update Status & Generate KTA
 export async function PUT(request, { params }) {
   try {
-    const id = parseInt(params.id)
+    const resolvedParams = await params;
+    const id = parseInt(resolvedParams.id)
     const { status, kabupaten } = await request.json()
 
     let dataUpdate = { status }
@@ -31,7 +32,8 @@ export async function PUT(request, { params }) {
 // Hapus Anggota
 export async function DELETE(request, { params }) {
   try {
-    const id = parseInt(params.id)
+    const resolvedParams = await params;
+    const id = parseInt(resolvedParams.id)
     await prisma.anggota.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error) {
