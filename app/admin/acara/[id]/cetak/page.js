@@ -68,8 +68,9 @@ export default function CetakIDCard() {
           <div key={p.id} className="id-card" style={{ 
             width: '90mm', 
             height: '135mm', 
-            background: acara.background ? `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat` : 'white',
-            border: acara.background ? 'none' : '2px solid #16a34a',
+            background: acara.background 
+              ? `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat` 
+              : `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 45%, rgba(255,255,255,1) 100%), url('https://i.ibb.co.com/8N6KbbQ/bg-kta-ma.jpg') center/cover no-repeat`,
             borderRadius: '12px',
             position: 'relative',
             overflow: 'hidden',
@@ -79,11 +80,11 @@ export default function CetakIDCard() {
             alignItems: 'center',
             boxSizing: 'border-box'
           }}>
-            {/* Header / Logo Latar Belakang Standar jika tidak ada background custom */}
+            {/* Header / Nama Acara (Tampil di area transparan/hijau atas) */}
             {!acara.background && (
-              <div style={{ width: '100%', height: '35mm', background: '#16a34a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', padding: '1rem', textAlign: 'center', boxSizing: 'border-box' }}>
-                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase' }}>{acara.nama}</h3>
-                <p style={{ margin: 0, fontSize: '0.7rem', opacity: 0.9 }}>{new Date(acara.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</p>
+              <div style={{ width: '100%', height: '35mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', color: 'white', padding: '10mm 5mm 0', textAlign: 'center', boxSizing: 'border-box', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.2 }}>{acara.nama}</h3>
+                <p style={{ margin: '4px 0 0 0', fontSize: '0.75rem', fontWeight: 600 }}>{new Date(acara.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</p>
               </div>
             )}
 
@@ -91,11 +92,11 @@ export default function CetakIDCard() {
             <div style={{ 
               width: '35mm', 
               height: '45mm', 
-              background: '#e2e8f0', 
-              marginTop: acara.background ? '30mm' : '8mm', 
+              background: '#f1f5f9', 
+              marginTop: acara.background ? '30mm' : '-5mm', 
               borderRadius: '8px',
-              border: '3px solid white',
-              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+              border: '4px solid white',
+              boxShadow: '0 10px 15px -3px rgba(0,0,0,0.15)',
               overflow: 'hidden',
               display: 'flex',
               justifyContent: 'center',
@@ -110,11 +111,11 @@ export default function CetakIDCard() {
             </div>
 
             {/* Nama & Instansi */}
-            <div style={{ width: '100%', textAlign: 'center', padding: '0 10mm', marginTop: '6mm', zIndex: 2 }}>
-              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: acara.background ? 'white' : 'var(--teks)', lineHeight: 1.2 }}>
+            <div style={{ width: '100%', textAlign: 'center', padding: '0 8mm', marginTop: '6mm', zIndex: 2 }}>
+              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900, color: acara.background ? 'white' : '#0f172a', lineHeight: 1.2 }}>
                 {p.nama}
               </h2>
-              <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: acara.background ? 'rgba(255,255,255,0.9)' : 'var(--teks-abu)', fontWeight: 600 }}>
+              <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: acara.background ? 'rgba(255,255,255,0.9)' : '#64748b', fontWeight: 700 }}>
                 {p.instansi}
               </p>
             </div>
@@ -122,30 +123,30 @@ export default function CetakIDCard() {
             {/* Peran / Label */}
             <div style={{ 
               marginTop: 'auto', 
-              marginBottom: acara.background ? '30mm' : '8mm',
-              background: p.peran === 'PANITIA' ? '#ef4444' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? '#f59e0b' : '#3b82f6',
+              marginBottom: acara.background ? '30mm' : '15mm',
+              background: p.peran === 'PANITIA' ? 'linear-gradient(135deg, #ef4444, #b91c1c)' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
               color: 'white',
-              padding: '6px 20px',
-              borderRadius: '20px',
+              padding: '8px 24px',
+              borderRadius: '30px',
               fontWeight: 900,
-              letterSpacing: '1px',
+              letterSpacing: '1.5px',
               fontSize: '1.1rem',
               textTransform: 'uppercase',
               zIndex: 2,
-              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.2)'
+              boxShadow: '0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1)'
             }}>
               {p.peran}
             </div>
 
+            {/* Area Bawah: QR Code & Ornamen */}
+            {!acara.background && (
+              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '8mm', background: 'linear-gradient(90deg, #16a34a, #047857)', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px' }} />
+            )}
+
             {/* QR Code di pojok */}
-            <div style={{ position: 'absolute', bottom: '8mm', right: '8mm', padding: '4px', background: 'white', borderRadius: '4px', zIndex: 2 }}>
+            <div style={{ position: 'absolute', bottom: '12mm', right: '10mm', padding: '4px', background: 'white', borderRadius: '8px', zIndex: 3, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
               <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={45} />
             </div>
-            
-            {/* Logo MA watermark (jika standar) */}
-            {!acara.background && (
-              <img src="/logo-ma.png" alt="Logo" style={{ position: 'absolute', width: '60%', opacity: 0.05, top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }} />
-            )}
           </div>
         ))}
       </div>
