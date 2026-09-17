@@ -26,6 +26,8 @@ export default function CetakIDCard() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@500;700;800&display=swap');
+
         @media print {
           body { background: white; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
@@ -68,18 +70,23 @@ export default function CetakIDCard() {
           <div key={p.id} className="id-card" style={{ 
             width: '90mm', 
             height: '135mm', 
-            background: 'white',
+            background: acara.background 
+              ? `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat`
+              : `linear-gradient(135deg, #064e3b 0%, #16a34a 100%)`,
             border: '1px solid #cbd5e1',
             borderRadius: '8px',
             position: 'relative',
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            boxShadow: '0 10px 20px -5px rgba(0,0,0,0.15)'
           }}>
-            {/* Latar Belakang Transparan jika ada Custom Background */}
-            {acara.background && (
+            {/* Latar Belakang Transparan & Watermark */}
+            {acara.background ? (
               <div style={{ position: 'absolute', inset: 0, opacity: 0.15, background: `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat`, zIndex: 0 }} />
+            ) : (
+              <img src="/logo-ma.png" alt="Watermark" style={{ position: 'absolute', top: '45%', left: '55%', transform: 'translate(-50%, -50%)', width: '75%', opacity: 0.08, zIndex: 0 }} />
             )}
 
             {/* AREA ATAS (Isi Utama) */}
@@ -87,8 +94,9 @@ export default function CetakIDCard() {
               
               {/* Sidebar Kiri (NAMA ACARA Vertikal) */}
               <div style={{ 
-                width: '18mm', 
-                background: '#16a34a', 
+                width: '16mm', 
+                background: 'rgba(0, 0, 0, 0.25)', 
+                borderRight: '1px solid rgba(255,255,255,0.1)',
                 color: 'white', 
                 display: 'flex', 
                 alignItems: 'center', 
@@ -99,34 +107,41 @@ export default function CetakIDCard() {
                   writingMode: 'vertical-rl', 
                   transform: 'rotate(180deg)',
                   margin: 0, 
+                  fontFamily: "'Montserrat', sans-serif",
                   fontSize: '1.2rem', 
                   fontWeight: 900, 
                   textTransform: 'uppercase', 
                   letterSpacing: '2px',
                   textAlign: 'center',
-                  lineHeight: 1.2
+                  lineHeight: 1.2,
+                  textShadow: '0 2px 4px rgba(0,0,0,0.5)'
                 }}>
                   {acara.nama}
                 </h2>
               </div>
 
               {/* Area Kanan (Tengah) */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '5mm', justifyContent: 'center' }}>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '4mm', justifyContent: 'center' }}>
                 
-                {/* PERAN */}
-                <h1 style={{ 
+                {/* PERAN (Pill Badge) */}
+                <div style={{ 
                   margin: 0,
-                  color: p.peran === 'PANITIA' ? '#ef4444' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? '#f59e0b' : '#3b82f6',
-                  fontSize: '1.6rem', 
+                  background: 'linear-gradient(135deg, #ffffff, #f1f5f9)',
+                  color: p.peran === 'PANITIA' ? '#dc2626' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? '#d97706' : '#2563eb',
+                  padding: '4px 18px',
+                  borderRadius: '30px',
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: '1.1rem', 
                   fontWeight: 900, 
                   textTransform: 'uppercase',
-                  letterSpacing: '1px'
+                  letterSpacing: '1px',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.25)'
                 }}>
                   {p.peran}
-                </h1>
+                </div>
 
                 {/* TEMPAT & TANGGAL */}
-                <div style={{ textAlign: 'center', marginTop: '3mm', color: '#334155', fontSize: '0.8rem', fontWeight: 700, lineHeight: 1.4, textTransform: 'uppercase' }}>
+                <div style={{ textAlign: 'center', marginTop: '3mm', color: 'rgba(255,255,255,0.95)', fontFamily: "'Poppins', sans-serif", fontSize: '0.75rem', fontWeight: 700, lineHeight: 1.4, textTransform: 'uppercase', textShadow: '0 1px 2px rgba(0,0,0,0.4)' }}>
                   <div>{acara.tempat}</div>
                   <div>{new Date(acara.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
                 </div>
@@ -138,27 +153,28 @@ export default function CetakIDCard() {
                   background: '#f1f5f9', 
                   marginTop: '5mm', 
                   marginBottom: '5mm', 
-                  border: '2px solid #cbd5e1',
-                  borderRadius: '4px',
+                  border: '3px solid white',
+                  borderRadius: '6px',
                   overflow: 'hidden',
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  boxShadow: '0 8px 15px rgba(0,0,0,0.3)'
                 }}>
                   {p.pasFoto ? (
                     <img src={getDirectImageUrl(p.pasFoto)} alt="Foto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : (
-                    <span style={{ color: '#94a3b8', fontSize: '0.75rem', fontWeight: 700 }}>FOTO</span>
+                    <span style={{ color: '#94a3b8', fontFamily: "'Poppins', sans-serif", fontSize: '0.75rem', fontWeight: 700 }}>FOTO</span>
                   )}
                 </div>
 
                 {/* NAMA PESERTA */}
-                <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', textAlign: 'center', lineHeight: 1.2 }}>
+                <h2 style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: 'white', textAlign: 'center', lineHeight: 1.2, textShadow: '0 2px 5px rgba(0,0,0,0.5)' }}>
                   {p.nama}
                 </h2>
                 
                 {/* DELEGASI / INSTANSI */}
-                <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: '#475569', fontWeight: 700, textAlign: 'center', textTransform: 'uppercase' }}>
+                <p style={{ margin: '3px 0 0 0', fontFamily: "'Poppins', sans-serif", fontSize: '0.85rem', color: '#fde047', fontWeight: 700, textAlign: 'center', textTransform: 'uppercase', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
                   {p.instansi}
                 </p>
 
@@ -167,26 +183,27 @@ export default function CetakIDCard() {
 
             {/* AREA BAWAH (Footer: Logos & QR) */}
             <div style={{ 
-              height: '24mm', 
-              borderTop: '2px solid #cbd5e1', 
+              height: '22mm', 
+              borderTop: '3px solid #f8fafc', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'space-between', 
-              padding: '0 5mm', 
+              padding: '0 4mm', 
               background: 'white',
-              zIndex: 1
+              zIndex: 1,
+              boxShadow: '0 -4px 10px rgba(0,0,0,0.1)'
             }}>
               
               {/* Logos */}
               <div style={{ display: 'flex', gap: '3mm', alignItems: 'center' }}>
-                <img src="/logo-ma.png" alt="MA" style={{ height: '14mm', width: 'auto' }} />
-                <img src="/banom-muslimat.jpg" alt="MUSMA" style={{ height: '12mm', width: 'auto', borderRadius: '50%' }} />
-                <img src="/banom-gema.jpg" alt="HIMMA" style={{ height: '12mm', width: 'auto', borderRadius: '2px' }} />
+                <img src="/logo-ma.png" alt="MA" style={{ height: '10mm', width: 'auto' }} />
+                <img src="/banom-muslimat.jpg" alt="MUSMA" style={{ height: '9mm', width: 'auto', borderRadius: '50%' }} />
+                <img src="/banom-gema.jpg" alt="HIMMA" style={{ height: '9mm', width: 'auto', borderRadius: '2px' }} />
               </div>
 
               {/* QR Code */}
-              <div style={{ padding: '2px', border: '1px solid #cbd5e1', borderRadius: '4px', background: 'white' }}>
-                <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={60} />
+              <div style={{ padding: '2px', border: '1px solid #cbd5e1', borderRadius: '4px', background: 'white', display: 'flex' }}>
+                <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={45} />
               </div>
 
             </div>
