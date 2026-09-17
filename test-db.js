@@ -1,0 +1,1 @@
+const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { const b = await prisma.berita.findFirst({ orderBy: { createdAt: 'desc' } }); console.log('Thumb:', b.thumbnail); } main();

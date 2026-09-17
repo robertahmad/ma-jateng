@@ -57,6 +57,22 @@ export default async function BeritaDetail({ params }) {
             <p key={i} style={{ marginBottom: '1.5rem' }}>{paragraph}</p>
           ))}
         </div>
+
+        {/* Share Buttons */}
+        <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid #e2e8f0' }}>
+          <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--hijau-tua)' }}>Bagikan Berita Ini</h3>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <a href={`https://wa.me/?text=${encodeURIComponent(berita.judul + ' - Baca selengkapnya di: https://ma-jateng.vercel.app/berita/' + berita.slug)}`} target="_blank" rel="noopener noreferrer" style={{ background: '#25D366', color: 'white', padding: '0.6rem 1.2rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 2px 5px rgba(37,211,102,0.2)' }}>
+              📱 WhatsApp
+            </a>
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://ma-jateng.vercel.app/berita/' + berita.slug)}`} target="_blank" rel="noopener noreferrer" style={{ background: '#1877F2', color: 'white', padding: '0.6rem 1.2rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 2px 5px rgba(24,119,242,0.2)' }}>
+              📘 Facebook
+            </a>
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent('https://ma-jateng.vercel.app/berita/' + berita.slug)}&text=${encodeURIComponent(berita.judul)}`} target="_blank" rel="noopener noreferrer" style={{ background: '#1DA1F2', color: 'white', padding: '0.6rem 1.2rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 2px 5px rgba(29,161,242,0.2)' }}>
+              🐦 Twitter
+            </a>
+          </div>
+        </div>
       </div>
 
       <Footer />
