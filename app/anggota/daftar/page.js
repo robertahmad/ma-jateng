@@ -12,6 +12,7 @@ export default function PendaftaranAnggota() {
     tempatLahir: '',
     tanggalLahir: '',
     jenisKelamin: '',
+    ktaMode: 'MA',
     noWhatsApp: '',
     alamatLengkap: '',
     kabupaten: '',
@@ -116,7 +117,10 @@ export default function PendaftaranAnggota() {
 
                 <div>
                   <label className="form-label">Jenis Kelamin</label>
-                  <select className="form-input" required value={formData.jenisKelamin} onChange={e => setFormData({...formData, jenisKelamin: e.target.value})} style={{ background: 'white' }}>
+                  <select className="form-input" required value={formData.jenisKelamin} onChange={e => {
+                    const jk = e.target.value
+                    setFormData({...formData, jenisKelamin: jk, ktaMode: jk === 'P' ? 'MUSMA' : 'MA'})
+                  }} style={{ background: 'white' }}>
                     <option value="">Pilih...</option>
                     <option value="L">Laki-laki</option>
                     <option value="P">Perempuan</option>
@@ -126,6 +130,14 @@ export default function PendaftaranAnggota() {
                 <div>
                   <label className="form-label">Nomor WhatsApp Aktif</label>
                   <input type="text" className="form-input" required placeholder="08..." value={formData.noWhatsApp} onChange={e => setFormData({...formData, noWhatsApp: e.target.value})} />
+                </div>
+
+                <div style={{ gridColumn: '1 / -1' }}>
+                  <label className="form-label">Organisasi yang Dituju (Mode KTA)</label>
+                  <select className="form-input" required value={formData.ktaMode} onChange={e => setFormData({...formData, ktaMode: e.target.value})} style={{ background: 'white' }}>
+                    <option value="MA">Mathla'ul Anwar (Umum / Pria)</option>
+                    <option value="MUSMA">Muslimat Mathla'ul Anwar (Khusus Wanita)</option>
+                  </select>
                 </div>
 
                 <div style={{ gridColumn: '1 / -1' }}>
