@@ -110,21 +110,21 @@ export default function AdminPengurus() {
                   placeholder="Cth: Wakil Ketua"
                 />
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                <div className="form-group">
-                  <label className="form-label">Kategori Organisasi</label>
-                  <select className="form-select" value={formData.kategoriOrganisasi} onChange={e => setFormData({...formData, kategoriOrganisasi: e.target.value})}>
-                    <option value="MA Jateng">MA Jateng</option>
-                    <option value="PWMUSMA Jateng">PWMUSMA Jateng (Muslimat)</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Nomor Urut Tampil</label>
-                  <input type="number" className="form-input" required min="1"
-                    value={formData.urutan} onChange={e => setFormData({...formData, urutan: e.target.value})} 
-                  />
-                </div>
+              <div className="form-group">
+                <label className="form-label">Kategori Organisasi</label>
+                <select className="form-select" value={formData.kategoriOrganisasi} onChange={e => setFormData({...formData, kategoriOrganisasi: e.target.value})}>
+                  <option value="MA Jateng">MA Jateng</option>
+                  <option value="PWMUSMA Jateng">PWMUSMA Jateng (Muslimat)</option>
+                </select>
               </div>
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label">Nomor Urut Tampil</label>
+              <input type="number" className="form-input" required min="1"
+                value={formData.urutan} onChange={e => setFormData({...formData, urutan: e.target.value})} 
+              />
+            </div>
 
             <div className="form-group">
               <label className="form-label">Pas Foto (URL Gambar)</label>
