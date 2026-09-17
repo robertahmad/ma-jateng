@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { Users, User, X, Clock, CheckCircle2, XCircle, Phone } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export default function AdminAnggota() {
   const [anggotaList, setAnggotaList] = useState([])
@@ -105,7 +106,7 @@ export default function AdminAnggota() {
           <div>
             <div style={{ width: '100%', aspectRatio: '3/4', background: '#f1f5f9', borderRadius: '12px', overflow: 'hidden', marginBottom: '1.5rem', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {a.pasFoto ? (
-                <img src={a.pasFoto} alt="Pas Foto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={getDirectImageUrl(a.pasFoto)} alt="Pas Foto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               ) : (
                 <User size={64} color="#cbd5e1" />
               )}
