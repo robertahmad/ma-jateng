@@ -68,89 +68,129 @@ export default function CetakIDCard() {
           <div key={p.id} className="id-card" style={{ 
             width: '90mm', 
             height: '135mm', 
-            background: acara.background 
-              ? `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat` 
-              : `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 45%, rgba(255,255,255,1) 100%), radial-gradient(circle at top right, #059669, #064e3b)`,
-            borderRadius: '12px',
+            background: 'white',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
             position: 'relative',
             overflow: 'hidden',
-            boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
             boxSizing: 'border-box'
           }}>
-            {/* Header / Nama Acara (Tampil di area transparan/hijau atas) */}
-            {!acara.background && (
-              <div style={{ width: '100%', height: '35mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', color: 'white', padding: '10mm 5mm 0', textAlign: 'center', boxSizing: 'border-box', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
-                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.2 }}>{acara.nama}</h3>
-                <p style={{ margin: '4px 0 0 0', fontSize: '0.75rem', fontWeight: 600 }}>{new Date(acara.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</p>
+            {/* Latar Belakang Transparan jika ada Custom Background */}
+            {acara.background && (
+              <div style={{ position: 'absolute', inset: 0, opacity: 0.15, background: `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat`, zIndex: 0 }} />
+            )}
+
+            {/* AREA ATAS (Isi Utama) */}
+            <div style={{ display: 'flex', flex: 1, zIndex: 1 }}>
+              
+              {/* Sidebar Kiri (NAMA ACARA Vertikal) */}
+              <div style={{ 
+                width: '18mm', 
+                background: '#16a34a', 
+                color: 'white', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                padding: '10mm 0'
+              }}>
+                <h2 style={{ 
+                  writingMode: 'vertical-rl', 
+                  transform: 'rotate(180deg)',
+                  margin: 0, 
+                  fontSize: '1.2rem', 
+                  fontWeight: 900, 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  lineHeight: 1.2
+                }}>
+                  {acara.nama}
+                </h2>
               </div>
-            )}
 
-            {/* Foto Peserta */}
+              {/* Area Kanan (Tengah) */}
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '5mm', justifyContent: 'center' }}>
+                
+                {/* PERAN */}
+                <h1 style={{ 
+                  margin: 0,
+                  color: p.peran === 'PANITIA' ? '#ef4444' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? '#f59e0b' : '#3b82f6',
+                  fontSize: '1.6rem', 
+                  fontWeight: 900, 
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
+                }}>
+                  {p.peran}
+                </h1>
+
+                {/* TEMPAT & TANGGAL */}
+                <div style={{ textAlign: 'center', marginTop: '3mm', color: '#334155', fontSize: '0.8rem', fontWeight: 700, lineHeight: 1.4, textTransform: 'uppercase' }}>
+                  <div>{acara.tempat}</div>
+                  <div>{new Date(acara.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
+                </div>
+
+                {/* FOTO */}
+                <div style={{ 
+                  width: '35mm', 
+                  height: '45mm', 
+                  background: '#f1f5f9', 
+                  marginTop: '5mm', 
+                  marginBottom: '5mm', 
+                  border: '2px solid #cbd5e1',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                  {p.pasFoto ? (
+                    <img src={getDirectImageUrl(p.pasFoto)} alt="Foto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <span style={{ color: '#94a3b8', fontSize: '0.75rem', fontWeight: 700 }}>FOTO</span>
+                  )}
+                </div>
+
+                {/* NAMA PESERTA */}
+                <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', textAlign: 'center', lineHeight: 1.2 }}>
+                  {p.nama}
+                </h2>
+                
+                {/* DELEGASI / INSTANSI */}
+                <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: '#475569', fontWeight: 700, textAlign: 'center', textTransform: 'uppercase' }}>
+                  {p.instansi}
+                </p>
+
+              </div>
+            </div>
+
+            {/* AREA BAWAH (Footer: Logos & QR) */}
             <div style={{ 
-              width: '35mm', 
-              height: '45mm', 
-              background: '#f1f5f9', 
-              marginTop: acara.background ? '30mm' : '-5mm', 
-              borderRadius: '8px',
-              border: '4px solid white',
-              boxShadow: '0 10px 15px -3px rgba(0,0,0,0.15)',
-              overflow: 'hidden',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              zIndex: 2
+              height: '24mm', 
+              borderTop: '2px solid #cbd5e1', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between', 
+              padding: '0 5mm', 
+              background: 'white',
+              zIndex: 1
             }}>
-              {p.pasFoto ? (
-                <img src={getDirectImageUrl(p.pasFoto)} alt={p.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              ) : (
-                <span style={{ color: '#94a3b8', fontSize: '0.7rem' }}>Tidak ada foto</span>
-              )}
+              
+              {/* Logos */}
+              <div style={{ display: 'flex', gap: '3mm', alignItems: 'center' }}>
+                <img src="/logo-ma.png" alt="MA" style={{ height: '14mm', width: 'auto' }} />
+                <img src="/banom-muslimat.jpg" alt="MUSMA" style={{ height: '12mm', width: 'auto', borderRadius: '50%' }} />
+                <img src="/banom-gema.jpg" alt="HIMMA" style={{ height: '12mm', width: 'auto', borderRadius: '2px' }} />
+              </div>
+
+              {/* QR Code */}
+              <div style={{ padding: '2px', border: '1px solid #cbd5e1', borderRadius: '4px', background: 'white' }}>
+                <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={60} />
+              </div>
+
             </div>
 
-            {/* Nama & Instansi */}
-            <div style={{ width: '100%', textAlign: 'center', padding: '0 8mm', marginTop: '6mm', zIndex: 2 }}>
-              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900, color: acara.background ? 'white' : '#0f172a', lineHeight: 1.2 }}>
-                {p.nama}
-              </h2>
-              <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: acara.background ? 'rgba(255,255,255,0.9)' : '#64748b', fontWeight: 700 }}>
-                {p.instansi}
-              </p>
-            </div>
-
-            {/* Peran / Label */}
-            <div style={{ 
-              marginTop: '8mm', 
-              background: p.peran === 'PANITIA' ? 'linear-gradient(135deg, #ef4444, #b91c1c)' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-              color: 'white',
-              padding: '6px 20px',
-              borderRadius: '30px',
-              fontWeight: 900,
-              letterSpacing: '1px',
-              fontSize: '0.85rem',
-              textTransform: 'uppercase',
-              zIndex: 2,
-              boxShadow: '0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1)'
-            }}>
-              {p.peran}
-            </div>
-
-            {/* Logo Watermark Halus di atas fade */}
-            {!acara.background && (
-              <img src="/logo-ma.png" alt="Watermark" style={{ position: 'absolute', top: '10mm', left: '50%', transform: 'translateX(-50%)', width: '60mm', opacity: 0.1, zIndex: 0 }} />
-            )}
-
-            {/* Area Bawah: QR Code & Ornamen */}
-            {!acara.background && (
-              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '8mm', background: 'linear-gradient(90deg, #16a34a, #047857)', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px' }} />
-            )}
-
-            {/* QR Code di pojok */}
-            <div style={{ position: 'absolute', bottom: '12mm', right: '10mm', padding: '3px', background: 'white', borderRadius: '6px', zIndex: 3, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-              <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={35} />
-            </div>
           </div>
         ))}
       </div>
