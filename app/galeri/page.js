@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma'
 import { Image as ImageIcon } from 'lucide-react'
 import { getDirectImageUrl } from '@/lib/image'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function GaleriList() {
   const galeri = await prisma.galeri.findMany({

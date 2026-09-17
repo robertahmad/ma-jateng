@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { CalendarDays, Newspaper, Image as ImageIcon } from 'lucide-react'
 import { getDirectImageUrl } from '@/lib/image'
 
-export const revalidate = 60 // Revalidate every 60 seconds
+export const dynamic = 'force-dynamic'
 
 export default async function BeritaList() {
   const berita = await prisma.berita.findMany({

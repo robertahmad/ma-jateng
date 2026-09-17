@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { getDirectImageUrl } from '@/lib/image'
 import { CalendarDays, PenLine, MessageCircle, Image as ImageIcon } from 'lucide-react'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function BeritaDetail({ params }) {
   const { slug } = await params
