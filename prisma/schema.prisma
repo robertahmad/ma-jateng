@@ -208,3 +208,33 @@ model PendaftaranLP3H {
 
   @@map("ma_PendaftaranLP3H")
 }
+
+// ==========================================
+// FITUR KHUSUS 5: SISTEM ACARA & ID CARD
+// ==========================================
+model Acara {
+  id          Int       @id @default(autoincrement())
+  nama        String
+  slug        String    @unique
+  tanggal     DateTime
+  tempat      String
+  background  String?   // Opsional, gambar custom untuk ID Card
+  createdAt   DateTime  @default(now())
+
+  peserta     PesertaAcara[]
+
+  @@map("ma_Acara")
+}
+
+model PesertaAcara {
+  id          Int       @id @default(autoincrement())
+  acaraId     Int
+  acara       Acara     @relation(fields: [acaraId], references: [id], onDelete: Cascade)
+  nama        String
+  instansi    String    // Utusan dari mana (Cabang/Daerah/Instansi)
+  peran       String    // PANITIA, PESERTA, PENGISI ACARA, VIP, dll
+  pasFoto     String?   // Opsional link foto
+  createdAt   DateTime  @default(now())
+
+  @@map("ma_PesertaAcara")
+}

@@ -7,8 +7,11 @@ import toast from 'react-hot-toast'
 import { 
   LayoutDashboard, Newspaper, CalendarDays, Image as ImageIcon, 
   School, FolderOpen, Users, HandCoins, Settings, ExternalLink, LogOut,
-  MessageSquareQuote, MessageCircle, FileText, ShieldCheck
+  MessageSquareQuote, MessageCircle, FileText, ShieldCheck, Ticket
 } from 'lucide-react'
+
+// ... [skipping some code conceptually to show what I'll replace accurately] ...
+// I will just replace the exact range of imports and the navs array.
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname()
@@ -84,6 +87,7 @@ export default function AdminLayout({ children }) {
     { href: '/admin/dokumen', label: 'Dokumen & SK', icon: <FolderOpen size={20} /> },
     { href: '/admin/pengurus', label: 'Struktur Pengurus', icon: <Users size={20} /> },
     { href: '/admin/anggota', label: 'Anggota & KTA', icon: <Users size={20} />, badge: notifications.anggota },
+    { href: '/admin/acara', label: 'Acara & ID Card', icon: <Ticket size={20} /> },
     { href: '/admin/donasi', label: 'Program Donasi', icon: <HandCoins size={20} />, badge: notifications.donasi },
     { href: '/admin/mimbar', label: 'Mimbar Harian', icon: <MessageSquareQuote size={20} /> },
     { href: '/admin/layanan', label: 'Layanan Tanya Jawab', icon: <MessageCircle size={20} />, badge: notifications.tanyajawab },
