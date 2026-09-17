@@ -9,6 +9,8 @@ export async function PUT(request, { params }) {
     data: {
       nama: body.nama,
       jabatan: body.jabatan,
+      bidang: body.bidang || 'Pengurus Inti',
+      kategoriOrganisasi: body.kategoriOrganisasi || 'MA Jateng',
       foto: body.foto,
       urutan: parseInt(body.urutan) || 0
     }

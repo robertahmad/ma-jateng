@@ -64,7 +64,31 @@ export default function AdminAnggota() {
     }
   }
 
-  const DetailModal = ({ a }) => (
+  const handleUpdateKTA = async (id, editData) => {
+    const loadingToast = toast.loading('Menyimpan perubahan...')
+    try {
+      const res = await fetch(`/api/anggota/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editData)
+      })
+      if (res.ok) {
+        toast.success('Data KTA berhasil diperbarui', { id: loadingToast })
+        setViewDetail(null)
+        fetchAnggota()
+      } else {
+        toast.error('Gagal memperbarui data', { id: loadingToast })
+      }
+    } catch (e) {
+      toast.error('Terjadi kesalahan', { id: loadingToast })
+    }
+  }
+
+  const DetailModal = ({ a }) => {
+    const [isEdit, setIsEdit] = useState(false)
+    const [editData, setEditData] = useState({ pasFoto: a.pasFoto || '', ktaMode: a.ktaMode || 'MA' })
+
+    return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
       <div style={{ background: 'white', borderRadius: '16px', width: '100%', maxWidth: '800px', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.2)' }}>
         
@@ -155,12 +179,44 @@ export default function AdminAnggota() {
                 </div>
               </div>
             )}
+
+            {/* Panel Edit KTA (Jika Diterima) */}
+            {a.status === 'DITERIMA' && (
+              <div style={{ marginTop: 'auto', background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--teks)' }}>Pengaturan KTA</h3>
+                  <button onClick={() => setIsEdit(!isEdit)} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', background: 'white', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>
+                    {isEdit ? 'Batal Edit' : 'Edit KTA'}
+                  </button>
+                </div>
+                
+                {isEdit && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                      <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--teks-abu)' }}>Link Foto (Google Drive / URL)</label>
+                      <input type="text" style={{ padding: '0.6rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.9rem' }} placeholder="Paste link foto..." value={editData.pasFoto} onChange={e => setEditData({...editData, pasFoto: e.target.value})} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                      <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--teks-abu)' }}>Desain / Mode KTA</label>
+                      <select style={{ padding: '0.6rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.9rem' }} value={editData.ktaMode} onChange={e => setEditData({...editData, ktaMode: e.target.value})}>
+                        <option value="MA">Standar (MA Jateng)</option>
+                        <option value="MUSMA">Muslimat (MUSMA)</option>
+                      </select>
+                    </div>
+                    <button onClick={() => handleUpdateKTA(a.id, editData)} style={{ background: '#16a34a', color: 'white', padding: '0.75rem', borderRadius: '6px', border: 'none', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
+                      Simpan Perubahan
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
         </div>
       </div>
     </div>
-  )
+    )
+  }
 
   return (
     <>

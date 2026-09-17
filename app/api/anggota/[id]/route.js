@@ -6,9 +6,12 @@ export async function PUT(request, { params }) {
   try {
     const resolvedParams = await params;
     const id = parseInt(resolvedParams.id)
-    const { status, kabupaten } = await request.json()
+    const { status, kabupaten, ktaMode, pasFoto } = await request.json()
 
     let dataUpdate = { status }
+    
+    if (ktaMode !== undefined) dataUpdate.ktaMode = ktaMode
+    if (pasFoto !== undefined) dataUpdate.pasFoto = pasFoto
 
     // Jika DITERIMA, buatkan nomor KTA otomatis
     if (status === 'DITERIMA') {

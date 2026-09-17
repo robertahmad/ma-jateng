@@ -92,6 +92,7 @@ model Pengurus {
   nama    String
   jabatan String
   bidang  String @default("Pengurus Inti")
+  kategoriOrganisasi String @default("MA Jateng")
   foto    String?
   urutan  Int    @default(0)
 
@@ -122,6 +123,7 @@ model Anggota {
   pekerjaan       String?
   pasFoto         String?  // Link foto untuk KTA
   status          String   @default("PENDING") // PENDING, DITERIMA, DITOLAK
+  ktaMode         String   @default("MA") // MA, MUSMA
   nomorKTA        String?  @unique // Dibuat otomatis saat DITERIMA
   tanggalDaftar   DateTime @default(now())
 

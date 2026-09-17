@@ -8,15 +8,16 @@ export default function AdminPengurus() {
   const [pengurusList, setPengurusList] = useState([])
   const [loading, setLoading] = useState(true)
   const [view, setView] = useState('list') 
+  const [activeTab, setActiveTab] = useState('MA Jateng')
   
   const [formData, setFormData] = useState({ 
-    id: null, nama: '', jabatan: '', foto: '', urutan: 1 
+    id: null, nama: '', jabatan: '', foto: '', urutan: 1, kategoriOrganisasi: 'MA Jateng' 
   })
 
-  const fetchPengurus = async () => {
+  const fetchPengurus = async (tab = activeTab) => {
     setLoading(true)
     try {
-      const res = await fetch('/api/pengurus')
+      const res = await fetch('/api/pengurus?kategoriOrganisasi=' + tab)
       const data = await res.json()
       setPengurusList(data.data || [])
     } catch (e) {
@@ -26,8 +27,8 @@ export default function AdminPengurus() {
   }
 
   useEffect(() => {
-    fetchPengurus()
-  }, [])
+    fetchPengurus(activeTab)
+  }, [activeTab])
 
   const handleSave = async (e) => {
     e.preventDefault()
@@ -72,7 +73,7 @@ export default function AdminPengurus() {
     if (item) {
       setFormData(item)
     } else {
-      setFormData({ id: null, nama: '', jabatan: '', foto: '', urutan: pengurusList.length + 1 })
+      setFormData({ id: null, nama: '', jabatan: '', foto: '', urutan: pengurusList.length + 1, kategoriOrganisasi: activeTab })
     }
     setView('form')
   }
@@ -108,13 +109,21 @@ export default function AdminPengurus() {
                   placeholder="Cth: Wakil Ketua"
                 />
               </div>
-              <div className="form-group">
-                <label className="form-label">Nomor Urut Tampil</label>
-                <input type="number" className="form-input" required min="1"
-                  value={formData.urutan} onChange={e => setFormData({...formData, urutan: e.target.value})} 
-                />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="form-group">
+                  <label className="form-label">Kategori Organisasi</label>
+                  <select className="form-select" value={formData.kategoriOrganisasi} onChange={e => setFormData({...formData, kategoriOrganisasi: e.target.value})}>
+                    <option value="MA Jateng">MA Jateng</option>
+                    <option value="PWMUSMA Jateng">PWMUSMA Jateng (Muslimat)</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Nomor Urut Tampil</label>
+                  <input type="number" className="form-input" required min="1"
+                    value={formData.urutan} onChange={e => setFormData({...formData, urutan: e.target.value})} 
+                  />
+                </div>
               </div>
-            </div>
 
             <div className="form-group">
               <label className="form-label">Pas Foto (URL Gambar)</label>
@@ -148,6 +157,11 @@ export default function AdminPengurus() {
         <button onClick={() => openForm()} className="btn-green" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Plus size={18} /> Tambah Pengurus
         </button>
+      </div>
+
+      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', background: 'white', padding: '0.5rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+        <button onClick={() => setActiveTab('MA Jateng')} style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none', background: activeTab === 'MA Jateng' ? 'var(--hijau-tua)' : 'transparent', color: activeTab === 'MA Jateng' ? 'white' : 'var(--teks-abu)', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}>Struktur MA Jateng</button>
+        <button onClick={() => setActiveTab('PWMUSMA Jateng')} style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: 'none', background: activeTab === 'PWMUSMA Jateng' ? '#10b981' : 'transparent', color: activeTab === 'PWMUSMA Jateng' ? 'white' : 'var(--teks-abu)', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}>Struktur PWMUSMA Jateng</button>
       </div>
 
       <div className="admin-table">

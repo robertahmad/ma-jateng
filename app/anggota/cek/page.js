@@ -100,19 +100,19 @@ export default function CekKTA() {
                 
                 {/* TAMPAK DEPAN (Front Side) */}
                 <div className="kta-card front" style={{ 
-                  width: '450px', height: '285px', background: 'linear-gradient(135deg, var(--hijau-tua), #164e63)', 
+                  width: '450px', height: '285px', background: data.ktaMode === 'MUSMA' ? 'linear-gradient(135deg, #34d399, #059669)' : 'linear-gradient(135deg, var(--hijau-tua), #164e63)', 
                   borderRadius: '16px', padding: '1.5rem', color: 'white', 
                   boxShadow: '0 20px 40px rgba(0,0,0,0.2)', position: 'relative', overflow: 'hidden',
                   fontFamily: 'system-ui, sans-serif', display: 'flex', flexDirection: 'column'
                 }}>
-                  <div style={{ position: 'absolute', right: '-20px', top: '20px', width: '200px', height: '200px', backgroundImage: 'url("/logo-ma.png")', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', opacity: 0.1 }}></div>
+                  <div style={{ position: 'absolute', right: '-20px', top: '20px', width: '200px', height: '200px', backgroundImage: `url("${data.ktaMode === 'MUSMA' ? '/banom-muslimat.jpg' : '/logo-ma.png'}")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', opacity: 0.1 }}></div>
                   
                   {/* Header KTA */}
                   <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', borderBottom: '2px solid rgba(255,255,255,0.2)', paddingBottom: '0.75rem', marginBottom: '1.5rem', position: 'relative', zIndex: 1 }}>
-                    <img src="/logo-ma.png" alt="Logo MA" style={{ height: '45px', borderRadius: '4px' }} />
+                    <img src={data.ktaMode === 'MUSMA' ? "/banom-muslimat.jpg" : "/logo-ma.png"} alt="Logo" style={{ height: '45px', borderRadius: '4px' }} />
                     <div>
                       <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--emas)', letterSpacing: '1px' }}>KARTU TANDA ANGGOTA</div>
-                      <div style={{ fontSize: '1.1rem', fontWeight: 800, letterSpacing: '0.5px' }}>MATHLA&apos;UL ANWAR JATENG</div>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 800, letterSpacing: '0.5px' }}>{data.ktaMode === 'MUSMA' ? 'MUSLIMAT MATHLA\'UL ANWAR' : 'MATHLA\'UL ANWAR JATENG'}</div>
                     </div>
                   </div>
 
@@ -148,11 +148,11 @@ export default function CekKTA() {
                   boxShadow: '0 20px 40px rgba(0,0,0,0.1)', position: 'relative', overflow: 'hidden',
                   fontFamily: 'system-ui, sans-serif', display: 'flex', flexDirection: 'column', border: '1px solid #e2e8f0'
                 }}>
-                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: '250px', height: '250px', backgroundImage: 'url("/logo-ma.png")', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', opacity: 0.05, zIndex: 0 }}></div>
+                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: '250px', height: '250px', backgroundImage: `url("${data.ktaMode === 'MUSMA' ? '/banom-muslimat.jpg' : '/logo-ma.png'}")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', opacity: 0.05, zIndex: 0 }}></div>
                   
                   {/* Visi Misi */}
                   <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', flex: 1 }}>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--hijau-tua)', marginBottom: '0.5rem', letterSpacing: '1px' }}>VISI & MISI MATHLA&apos;UL ANWAR</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 800, color: data.ktaMode === 'MUSMA' ? '#059669' : 'var(--hijau-tua)', marginBottom: '0.5rem', letterSpacing: '1px' }}>{data.ktaMode === 'MUSMA' ? 'VISI & MISI MUSLIMAT MATHLA\'UL ANWAR' : 'VISI & MISI MATHLA\'UL ANWAR'}</div>
                     <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#334155' }}>Visi:</div>
                     <p style={{ fontSize: '0.7rem', color: 'var(--teks-abu)', marginBottom: '0.5rem', lineHeight: 1.4 }}>Menjadi ormas Islam yang mandiri dan profesional dalam memajukan pendidikan, dakwah, dan sosial ekonomi umat.</p>
                     <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#334155' }}>Misi:</div>
