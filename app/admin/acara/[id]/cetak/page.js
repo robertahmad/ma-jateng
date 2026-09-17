@@ -90,7 +90,7 @@ export default function CetakIDCard() {
             )}
 
             {/* AREA ATAS (Isi Utama) */}
-            <div style={{ display: 'flex', flex: 1, zIndex: 1 }}>
+            <div style={{ display: 'flex', height: '110mm', zIndex: 1 }}>
               
               {/* Sidebar Kiri (NAMA ACARA Vertikal) */}
               <div style={{ 
@@ -101,27 +101,29 @@ export default function CetakIDCard() {
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center',
-                padding: '10mm 0'
+                padding: '4mm 0',
+                overflow: 'hidden'
               }}>
                 <h2 style={{ 
                   writingMode: 'vertical-rl', 
                   transform: 'rotate(180deg)',
                   margin: 0, 
                   fontFamily: "'Montserrat', sans-serif",
-                  fontSize: '1.2rem', 
+                  fontSize: '0.95rem', 
                   fontWeight: 900, 
                   textTransform: 'uppercase', 
-                  letterSpacing: '2px',
+                  letterSpacing: '1px',
                   textAlign: 'center',
                   lineHeight: 1.2,
-                  textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+                  textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                  whiteSpace: 'nowrap'
                 }}>
                   {acara.nama}
                 </h2>
               </div>
 
               {/* Area Kanan (Tengah) */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '4mm', justifyContent: 'center' }}>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '4mm', justifyContent: 'center', overflow: 'hidden' }}>
                 
                 {/* PERAN (Pill Badge) */}
                 <div style={{ 
@@ -183,12 +185,12 @@ export default function CetakIDCard() {
 
             {/* AREA BAWAH (Footer: Logos & QR) */}
             <div style={{ 
-              height: '22mm', 
+              height: '25mm', 
               borderTop: '3px solid #f8fafc', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'space-between', 
-              padding: '0 4mm', 
+              padding: '0 5mm', 
               background: 'white',
               zIndex: 1,
               boxShadow: '0 -4px 10px rgba(0,0,0,0.1)'
@@ -196,14 +198,14 @@ export default function CetakIDCard() {
               
               {/* Logos */}
               <div style={{ display: 'flex', gap: '3mm', alignItems: 'center' }}>
-                <img src="/logo-ma.png" alt="MA" style={{ height: '10mm', width: 'auto' }} />
-                <img src="/banom-muslimat.jpg" alt="MUSMA" style={{ height: '9mm', width: 'auto', borderRadius: '50%' }} />
-                <img src="/banom-gema.jpg" alt="HIMMA" style={{ height: '9mm', width: 'auto', borderRadius: '2px' }} />
+                <img src="/logo-ma.png" alt="MA" style={{ height: '13mm', width: 'auto' }} />
+                <img src="/banom-muslimat.jpg" alt="MUSMA" style={{ height: '11mm', width: 'auto', borderRadius: '50%' }} />
+                <img src="/banom-gema.jpg" alt="HIMMA" style={{ height: '11mm', width: 'auto', borderRadius: '2px' }} />
               </div>
 
               {/* QR Code */}
               <div style={{ padding: '2px', border: '1px solid #cbd5e1', borderRadius: '4px', background: 'white', display: 'flex' }}>
-                <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={45} />
+                <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={60} />
               </div>
 
             </div>
