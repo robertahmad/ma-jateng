@@ -70,7 +70,7 @@ export default function CetakIDCard() {
             height: '135mm', 
             background: acara.background 
               ? `url(${getDirectImageUrl(acara.background)}) center/cover no-repeat` 
-              : `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 45%, rgba(255,255,255,1) 100%), url('https://i.ibb.co.com/8N6KbbQ/bg-kta-ma.jpg') center/cover no-repeat`,
+              : `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,1) 45%, rgba(255,255,255,1) 100%), radial-gradient(circle at top right, #059669, #064e3b)`,
             borderRadius: '12px',
             position: 'relative',
             overflow: 'hidden',
@@ -122,15 +122,14 @@ export default function CetakIDCard() {
 
             {/* Peran / Label */}
             <div style={{ 
-              marginTop: 'auto', 
-              marginBottom: acara.background ? '30mm' : '15mm',
+              marginTop: '8mm', 
               background: p.peran === 'PANITIA' ? 'linear-gradient(135deg, #ef4444, #b91c1c)' : p.peran === 'VIP' || p.peran === 'PENGISI ACARA' ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
               color: 'white',
-              padding: '8px 24px',
+              padding: '6px 20px',
               borderRadius: '30px',
               fontWeight: 900,
-              letterSpacing: '1.5px',
-              fontSize: '1.1rem',
+              letterSpacing: '1px',
+              fontSize: '0.85rem',
               textTransform: 'uppercase',
               zIndex: 2,
               boxShadow: '0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1)'
@@ -138,14 +137,19 @@ export default function CetakIDCard() {
               {p.peran}
             </div>
 
+            {/* Logo Watermark Halus di atas fade */}
+            {!acara.background && (
+              <img src="/logo-ma.png" alt="Watermark" style={{ position: 'absolute', top: '10mm', left: '50%', transform: 'translateX(-50%)', width: '60mm', opacity: 0.1, zIndex: 0 }} />
+            )}
+
             {/* Area Bawah: QR Code & Ornamen */}
             {!acara.background && (
               <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '8mm', background: 'linear-gradient(90deg, #16a34a, #047857)', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px' }} />
             )}
 
             {/* QR Code di pojok */}
-            <div style={{ position: 'absolute', bottom: '12mm', right: '10mm', padding: '4px', background: 'white', borderRadius: '8px', zIndex: 3, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-              <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={45} />
+            <div style={{ position: 'absolute', bottom: '12mm', right: '10mm', padding: '3px', background: 'white', borderRadius: '6px', zIndex: 3, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+              <QRCodeSVG value={`https://ma-jateng.vercel.app/acara/${acara.slug}/peserta/${p.id}`} size={35} />
             </div>
           </div>
         ))}
