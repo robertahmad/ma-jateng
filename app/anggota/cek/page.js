@@ -171,7 +171,9 @@ export default function CekKTA() {
                       {/* TTD Sekretaris */}
                       <div style={{ 
                         height: '35px', margin: '0.25rem 0', 
-                        backgroundImage: settings.ttd_sekretaris ? `url("${settings.ttd_sekretaris}")` : 'none', 
+                        backgroundImage: (data.ktaMode === 'MUSMA' && settings.ttd_sekretaris_musma) 
+                          ? `url("${settings.ttd_sekretaris_musma}")` 
+                          : (settings.ttd_sekretaris ? `url("${settings.ttd_sekretaris}")` : 'none'), 
                         backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' 
                       }}></div>
                       <div style={{ fontSize: '0.75rem', fontWeight: 800, textDecoration: 'underline', color: 'var(--teks)' }}>
@@ -183,7 +185,9 @@ export default function CekKTA() {
                     
                     {/* Stempel Tengah KTA */}
                     <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', opacity: 0.85, pointerEvents: 'none' }}>
-                      {settings.stempel_wilayah ? (
+                      {(data.ktaMode === 'MUSMA' && settings.stempel_musma) ? (
+                        <img src={settings.stempel_musma} alt="Stempel MUSMA" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
+                      ) : settings.stempel_wilayah ? (
                         <img src={settings.stempel_wilayah} alt="Stempel PWMA" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
                       ) : (
                         <div style={{ width: '55px', height: '55px', border: '2px solid var(--hijau-tua)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--hijau-tua)', fontSize: '0.45rem', fontWeight: 800, textAlign: 'center', transform: 'rotate(-15deg)' }}>STEMPEL<br/>PWMA</div>
@@ -195,7 +199,9 @@ export default function CekKTA() {
                       {/* TTD Ketua */}
                       <div style={{ 
                         height: '35px', margin: '0.25rem 0', 
-                        backgroundImage: settings.ttd_ketua ? `url("${settings.ttd_ketua}")` : 'none', 
+                        backgroundImage: (data.ktaMode === 'MUSMA' && settings.ttd_ketua_musma) 
+                          ? `url("${settings.ttd_ketua_musma}")` 
+                          : (settings.ttd_ketua ? `url("${settings.ttd_ketua}")` : 'none'), 
                         backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' 
                       }}></div>
                       <div style={{ fontSize: '0.75rem', fontWeight: 800, textDecoration: 'underline', color: 'var(--teks)' }}>

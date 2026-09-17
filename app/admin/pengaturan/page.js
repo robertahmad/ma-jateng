@@ -17,7 +17,10 @@ export default function AdminPengaturan() {
     nama_sekretaris_musma: '',
     ttd_ketua: '',
     ttd_sekretaris: '',
+    ttd_ketua_musma: '',
+    ttd_sekretaris_musma: '',
     stempel_wilayah: '',
+    stempel_musma: '',
     foto_ketua: '',
     sambutan_ketua: '',
     rekening_donasi: '',
@@ -166,11 +169,29 @@ export default function AdminPengaturan() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem' }}>
+            <div className="form-group">
+              <label className="form-label">Tanda Tangan Ketua MUSMA (URL Gambar PNG transparan) - Opsional</label>
+              <input type="url" className="form-input" name="ttd_ketua_musma" value={formData.ttd_ketua_musma || ''} onChange={handleChange} placeholder="Kosongkan jika pakai TTD MA" />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Tanda Tangan Sekretaris MUSMA (URL Gambar PNG transparan) - Opsional</label>
+              <input type="url" className="form-input" name="ttd_sekretaris_musma" value={formData.ttd_sekretaris_musma || ''} onChange={handleChange} placeholder="Kosongkan jika pakai TTD MA" />
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem' }}>
             <div className="form-group">
               <label className="form-label">Stempel Wilayah (URL Gambar PNG transparan) - Untuk KTA</label>
               <input type="url" className="form-input" name="stempel_wilayah" value={formData.stempel_wilayah || ''} onChange={handleChange} placeholder="https://..." />
             </div>
+            <div className="form-group">
+              <label className="form-label">Stempel MUSMA (URL Gambar PNG transparan) - Opsional</label>
+              <input type="url" className="form-input" name="stempel_musma" value={formData.stempel_musma || ''} onChange={handleChange} placeholder="Kosongkan jika pakai Stempel MA" />
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem' }}>
             <div className="form-group">
               <label className="form-label">Foto Ketua (URL Gambar) - Untuk Sambutan Profil</label>
               <input type="url" className="form-input" name="foto_ketua" value={formData.foto_ketua || ''} onChange={handleChange} placeholder="https://..." />
