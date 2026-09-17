@@ -13,13 +13,19 @@ export async function PUT(request, { params }) {
     if (ktaMode !== undefined) dataUpdate.ktaMode = ktaMode
     if (pasFoto !== undefined) dataUpdate.pasFoto = pasFoto
 
-    // Jika DITERIMA, buatkan nomor KTA otomatis
-    if (status === 'DITERIMA') {
-      const thn = new Date().getFullYear()
-      // Format: MA.0013.[Tahun].[ID] (contoh: MA.0013.2026.00001)
+    // Fetch existing record first to get accurate year and existing mode
+    const existing = await prisma.anggota.findUnique({ where: { id } })
+    if (!existing) {
+      return NextResponse.json({ error: 'Data tidak ditemukan' }, { status: 404 })
+    }
+
+    const newStatus = status !== undefined ? status : existing.status
+    const newMode = ktaMode !== undefined ? ktaMode : (existing.ktaMode || 'MA')
+
+    if (newStatus === 'DITERIMA') {
+      const thn = new Date(existing.tanggalDaftar || new Date()).getFullYear()
       const urutan = String(id).padStart(5, '0')
-      const mode = (ktaMode !== undefined ? ktaMode : (dataUpdate.ktaMode || 'MA'))
-      dataUpdate.nomorKTA = `${mode}.0013.${thn}.${urutan}`
+      dataUpdate.nomorKTA = `${newMode}.0013.${thn}.${urutan}`
     }
 
     const updated = await prisma.anggota.update({
