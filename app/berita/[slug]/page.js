@@ -3,6 +3,7 @@ import Footer from '@/components/Footer'
 import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { getDirectImageUrl } from '@/lib/image'
 
 export const revalidate = 60
 
@@ -43,7 +44,7 @@ export default async function BeritaDetail({ params }) {
         </div>
 
         {berita.thumbnail ? (
-          <img src={berita.thumbnail} alt={berita.judul} style={{ width: '100%', height: 'auto', borderRadius: '12px', marginBottom: '3rem' }} />
+          <img src={getDirectImageUrl(berita.thumbnail)} alt={berita.judul} style={{ width: '100%', height: 'auto', borderRadius: '12px', marginBottom: '3rem' }} />
         ) : (
           <div style={{ width: '100%', height: '300px', background: 'linear-gradient(135deg, var(--hijau-tua), var(--hijau-muda))', borderRadius: '12px', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
             📰

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { getDirectImageUrl } from '@/lib/image'
 
 export default function AdminGaleri() {
   const [galeriList, setGaleriList] = useState([])
@@ -153,7 +154,7 @@ export default function AdminGaleri() {
             {formData.foto && formData.jenis === 'Foto' && (
               <div style={{ marginBottom: '1.5rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px', border: '1px dashed #cbd5e1' }}>
                 <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--teks-abu)', marginBottom: '0.5rem' }}>Pratinjau Gambar:</p>
-                <img src={formData.foto} alt="Pratinjau" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '4px', objectFit: 'contain' }} onError={(e) => e.target.style.display='none'} />
+                <img src={getDirectImageUrl(formData.foto)} alt="Pratinjau" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '4px', objectFit: 'contain' }} onError={(e) => e.target.style.display='none'} />
               </div>
             )}
 
@@ -225,7 +226,7 @@ export default function AdminGaleri() {
                   <tr key={g.id}>
                     <td>
                       <div style={{ width: '80px', height: '60px', borderRadius: '6px', overflow: 'hidden', background: '#f1f5f9', position: 'relative' }}>
-                        <img src={g.foto} alt={g.judul} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => e.target.style.display='none'} />
+                        <img src={getDirectImageUrl(g.foto)} alt={g.judul} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => e.target.style.display='none'} />
                         {g.jenis === 'Video' && (
                           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.2rem' }}>▶️</div>
                         )}

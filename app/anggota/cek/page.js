@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Search, Printer, AlertCircle, Clock, XCircle, CheckCircle2, User } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export default function CekKTA() {
   const [nik, setNik] = useState('')
@@ -121,7 +122,7 @@ export default function CekKTA() {
                     {/* Frame Foto */}
                     <div style={{ width: '90px', height: '120px', background: 'rgba(255,255,255,0.1)', border: '2px solid rgba(255,255,255,0.3)', borderRadius: '8px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {data.pasFoto ? (
-                        <img src={data.pasFoto} alt="Pas Foto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={getDirectImageUrl(data.pasFoto)} alt="Pas Foto" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : (
                         <User size={40} color="rgba(255,255,255,0.4)" />
                       )}

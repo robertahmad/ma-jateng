@@ -3,6 +3,7 @@ import Footer from '@/components/Footer'
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
 import { CalendarDays } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -43,7 +44,7 @@ export default async function BeritaList() {
             {berita.map(b => (
               <Link key={b.id} href={`/berita/${b.slug}`} className="card">
                 {b.thumbnail ? (
-                  <img src={b.thumbnail} alt={b.judul} className="card-img" />
+                  <img src={getDirectImageUrl(b.thumbnail)} alt={b.judul} className="card-img" />
                 ) : (
                   <div className="card-img-placeholder">📰</div>
                 )}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { Plus, Edit2, Trash2, ArrowLeft, Image as ImageIcon } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export default function AdminPengurus() {
   const [pengurusList, setPengurusList] = useState([])
@@ -133,7 +134,7 @@ export default function AdminPengurus() {
               />
               {formData.foto && (
                 <div style={{ marginTop: '1rem', width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #e2e8f0' }}>
-                  <img src={formData.foto} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={getDirectImageUrl(formData.foto)} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               )}
             </div>
@@ -195,7 +196,7 @@ export default function AdminPengurus() {
                     <td>
                       {p.foto ? (
                          <div style={{ width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden', border: '1px solid #cbd5e1' }}>
-                           <img src={p.foto} alt={p.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                           <img src={getDirectImageUrl(p.foto)} alt={p.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                          </div>
                       ) : (
                          <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>

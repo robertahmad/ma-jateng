@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { User } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export const dynamic = 'force-dynamic'
 
@@ -91,7 +92,7 @@ export default async function Profil() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '3rem', alignItems: 'center' }}>
                 <div style={{ background: '#cbd5e1', width: '100%', aspectRatio: '3/4', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
                   {pengaturan.foto_ketua ? (
-                    <img src={pengaturan.foto_ketua} alt={pengaturan.nama_ketua} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={getDirectImageUrl(pengaturan.foto_ketua)} alt={pengaturan.nama_ketua} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>
                       <User size={80} />
@@ -125,7 +126,7 @@ export default async function Profil() {
                     <div style={{ textAlign: 'center', width: '250px' }}>
                       {ketua.foto ? (
                         <div style={{ width: '120px', height: '120px', borderRadius: '50%', margin: '0 auto 1rem', overflow: 'hidden', border: '3px solid var(--emas)', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
-                          <img src={ketua.foto} alt={ketua.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={getDirectImageUrl(ketua.foto)} alt={ketua.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
                       ) : (
                         <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--hijau-muda), var(--hijau-tua))', margin: '0 auto 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
@@ -144,7 +145,7 @@ export default async function Profil() {
                     <div key={p.id} style={{ textAlign: 'center', width: '200px' }}>
                       {p.foto ? (
                         <div style={{ width: '100px', height: '100px', borderRadius: '50%', margin: '0 auto 1rem', overflow: 'hidden', border: '2px solid #cbd5e1' }}>
-                          <img src={p.foto} alt={p.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img src={getDirectImageUrl(p.foto)} alt={p.nama} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
                       ) : (
                         <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: '#e2e8f0', margin: '0 auto 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>

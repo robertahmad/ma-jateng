@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import prisma from '@/lib/prisma'
 import { Image as ImageIcon } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export const revalidate = 60
 
@@ -57,7 +58,7 @@ export default async function GaleriList() {
                       ) : (
                         <>
                           <img 
-                            src={item.foto} 
+                            src={getDirectImageUrl(item.foto)} 
                             alt={item.judul} 
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             onError={(e) => { 
