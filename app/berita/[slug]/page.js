@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getDirectImageUrl } from '@/lib/image'
+import { CalendarDays, PenLine, MessageCircle, Facebook, Twitter, Image as ImageIcon } from 'lucide-react'
 
 export const revalidate = 60
 
@@ -37,17 +38,17 @@ export default async function BeritaDetail({ params }) {
             {berita.judul}
           </h1>
           <div style={{ color: 'var(--teks-abu)', fontSize: '0.9rem', marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span>📅 {formatTanggal(berita.createdAt)}</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><CalendarDays size={16} /> {formatTanggal(berita.createdAt)}</span>
             <span>•</span>
-            <span>✍️ Admin MA Jateng</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><PenLine size={16} /> Admin MA Jateng</span>
           </div>
         </div>
 
         {berita.thumbnail ? (
           <img src={getDirectImageUrl(berita.thumbnail)} alt={berita.judul} style={{ width: '100%', height: 'auto', borderRadius: '12px', marginBottom: '3rem' }} />
         ) : (
-          <div style={{ width: '100%', height: '300px', background: 'linear-gradient(135deg, var(--hijau-tua), var(--hijau-muda))', borderRadius: '12px', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
-            📰
+          <div style={{ width: '100%', height: '300px', background: 'linear-gradient(135deg, var(--hijau-tua), var(--hijau-muda))', borderRadius: '12px', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.8)' }}>
+            <ImageIcon size={64} />
           </div>
         )}
 
@@ -63,13 +64,13 @@ export default async function BeritaDetail({ params }) {
           <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--hijau-tua)' }}>Bagikan Berita Ini</h3>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <a href={`https://wa.me/?text=${encodeURIComponent(berita.judul + ' - Baca selengkapnya di: https://ma-jateng.vercel.app/berita/' + berita.slug)}`} target="_blank" rel="noopener noreferrer" style={{ background: '#25D366', color: 'white', padding: '0.6rem 1.2rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 2px 5px rgba(37,211,102,0.2)' }}>
-              📱 WhatsApp
+              <MessageCircle size={18} /> WhatsApp
             </a>
             <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://ma-jateng.vercel.app/berita/' + berita.slug)}`} target="_blank" rel="noopener noreferrer" style={{ background: '#1877F2', color: 'white', padding: '0.6rem 1.2rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 2px 5px rgba(24,119,242,0.2)' }}>
-              📘 Facebook
+              <Facebook size={18} /> Facebook
             </a>
             <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent('https://ma-jateng.vercel.app/berita/' + berita.slug)}&text=${encodeURIComponent(berita.judul)}`} target="_blank" rel="noopener noreferrer" style={{ background: '#1DA1F2', color: 'white', padding: '0.6rem 1.2rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 2px 5px rgba(29,161,242,0.2)' }}>
-              🐦 Twitter
+              <Twitter size={18} /> Twitter
             </a>
           </div>
         </div>

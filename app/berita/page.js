@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
-import { CalendarDays } from 'lucide-react'
+import { CalendarDays, Newspaper, Image as ImageIcon } from 'lucide-react'
 import { getDirectImageUrl } from '@/lib/image'
 
 export const revalidate = 60 // Revalidate every 60 seconds
@@ -35,7 +35,7 @@ export default async function BeritaList() {
       <div className="container" style={{ padding: '4rem 2rem' }}>
         {berita.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '5rem 0', color: 'var(--teks-abu)' }}>
-            <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>📰</span>
+            <span style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}><Newspaper size={64} color="#cbd5e1" /></span>
             <h3 style={{ fontSize: '1.25rem', color: 'var(--teks)', fontWeight: 700 }}>Belum Ada Berita</h3>
             <p>Pengurus belum mempublikasikan berita apapun.</p>
           </div>
@@ -46,7 +46,9 @@ export default async function BeritaList() {
                 {b.thumbnail ? (
                   <img src={getDirectImageUrl(b.thumbnail)} alt={b.judul} className="card-img" />
                 ) : (
-                  <div className="card-img-placeholder">📰</div>
+                  <div className="card-img-placeholder" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                    <ImageIcon size={48} />
+                  </div>
                 )}
                 <div className="card-body">
                   <span className="card-tag">{b.kategori}</span>
