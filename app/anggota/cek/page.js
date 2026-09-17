@@ -175,7 +175,9 @@ export default function CekKTA() {
                         backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' 
                       }}></div>
                       <div style={{ fontSize: '0.75rem', fontWeight: 800, textDecoration: 'underline', color: 'var(--teks)' }}>
-                        {settings.nama_sekretaris || 'NAMA SEKRETARIS'}
+                        {data.ktaMode === 'MUSMA' && settings.nama_sekretaris_musma 
+                          ? settings.nama_sekretaris_musma 
+                          : (settings.nama_sekretaris || 'NAMA SEKRETARIS')}
                       </div>
                     </div>
                     
@@ -197,7 +199,9 @@ export default function CekKTA() {
                         backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' 
                       }}></div>
                       <div style={{ fontSize: '0.75rem', fontWeight: 800, textDecoration: 'underline', color: 'var(--teks)' }}>
-                        {settings.nama_ketua || 'NAMA KETUA'}
+                        {data.ktaMode === 'MUSMA' && settings.nama_ketua_musma 
+                          ? settings.nama_ketua_musma 
+                          : (settings.nama_ketua || 'NAMA KETUA')}
                       </div>
                     </div>
                   </div>

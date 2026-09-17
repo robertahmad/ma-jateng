@@ -13,6 +13,8 @@ export default function AdminPengaturan() {
     whatsapp: '',
     nama_ketua: '',
     nama_sekretaris: '',
+    nama_ketua_musma: '',
+    nama_sekretaris_musma: '',
     ttd_ketua: '',
     ttd_sekretaris: '',
     stempel_wilayah: '',
@@ -139,6 +141,17 @@ export default function AdminPengaturan() {
             <div className="form-group">
               <label className="form-label">Nama Sekretaris Wilayah</label>
               <input type="text" className="form-input" name="nama_sekretaris" value={formData.nama_sekretaris || ''} onChange={handleChange} />
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem' }}>
+            <div className="form-group">
+              <label className="form-label">Nama Pimpinan Wilayah MUSMA (Muslimat)</label>
+              <input type="text" className="form-input" name="nama_ketua_musma" value={formData.nama_ketua_musma || ''} onChange={handleChange} placeholder="Kosongkan jika sama dengan MA" />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Nama Sekretaris Wilayah MUSMA</label>
+              <input type="text" className="form-input" name="nama_sekretaris_musma" value={formData.nama_sekretaris_musma || ''} onChange={handleChange} placeholder="Kosongkan jika sama dengan MA" />
             </div>
           </div>
 
