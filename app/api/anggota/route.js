@@ -25,7 +25,7 @@ export async function GET(request) {
 // Digunakan oleh frontend pendaftaran
 export async function POST(request) {
   try {
-    const body = await request.json()
+    const { id, ...body } = await request.json()
     // Cek apakah NIK sudah pernah mendaftar
     const cekNik = await prisma.anggota.findUnique({ where: { nik: body.nik } })
     if (cekNik) {

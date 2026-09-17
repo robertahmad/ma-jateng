@@ -9,7 +9,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const body = await request.json()
+  const { id, ...body } = await request.json()
   const dokumen = await prisma.dokumen.create({ data: body })
   return NextResponse.json({ success: true, data: dokumen })
 }

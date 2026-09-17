@@ -9,7 +9,7 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const body = await request.json()
+  const { id, ...body } = await request.json()
   const data = await prisma.pengurus.create({ data: {
     nama: body.nama,
     jabatan: body.jabatan,

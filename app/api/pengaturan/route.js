@@ -14,7 +14,7 @@ export async function GET(request) {
 }
 
 export async function PUT(request) {
-  const body = await request.json()
+  const { id, ...body } = await request.json()
   
   // Update secara massal (bulk update) menggunakan transaksi
   const updatePromises = Object.keys(body).map(kunci => {

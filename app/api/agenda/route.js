@@ -14,7 +14,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const body = await request.json()
+  const { id, ...body } = await request.json()
   const agenda = await prisma.agenda.create({ data: body })
   return NextResponse.json({ success: true, data: agenda })
 }

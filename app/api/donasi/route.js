@@ -17,7 +17,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const body = await request.json()
+  const { id, ...body } = await request.json()
   
   // Buat slug otomatis
   const slug = body.judul.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-') + '-' + Date.now()
