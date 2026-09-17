@@ -16,9 +16,10 @@ export async function PUT(request, { params }) {
     // Jika DITERIMA, buatkan nomor KTA otomatis
     if (status === 'DITERIMA') {
       const thn = new Date().getFullYear()
-      // Format: MA-JT.[Tahun].[ID] (contoh: MA-JT.2026.0001)
-      const urutan = String(id).padStart(4, '0')
-      dataUpdate.nomorKTA = `MA-JT.${thn}.${urutan}`
+      // Format: MA.0013.[Tahun].[ID] (contoh: MA.0013.2026.00001)
+      const urutan = String(id).padStart(5, '0')
+      const mode = (ktaMode !== undefined ? ktaMode : (dataUpdate.ktaMode || 'MA'))
+      dataUpdate.nomorKTA = `${mode}.0013.${thn}.${urutan}`
     }
 
     const updated = await prisma.anggota.update({
