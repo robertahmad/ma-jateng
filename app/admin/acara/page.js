@@ -86,7 +86,7 @@ export default function AdminAcara() {
               </div>
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                 <button type="button" onClick={() => setShowModal(false)} style={{ flex: 1, padding: '0.8rem', background: '#f1f5f9', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>Batal</button>
-                <button type="submit" style={{ flex: 1, padding: '0.8rem', background: 'var(--hijau-utama)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>Simpan Acara</button>
+                <button type="submit" style={{ flex: 1, padding: '0.8rem', background: '#16a34a', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>Simpan Acara</button>
               </div>
             </form>
           </div>
