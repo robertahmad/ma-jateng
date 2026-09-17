@@ -27,7 +27,7 @@ export default function CetakIDCard() {
     <>
       <style dangerouslySetInnerHTML={{__html: `
         @media print {
-          body { background: white; margin: 0; padding: 0; }
+          body { background: white; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
           .print-container { 
             display: grid; 
@@ -81,7 +81,7 @@ export default function CetakIDCard() {
           }}>
             {/* Header / Logo Latar Belakang Standar jika tidak ada background custom */}
             {!acara.background && (
-              <div style={{ width: '100%', height: '35mm', background: 'var(--hijau-utama)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', padding: '1rem', textAlign: 'center', boxSizing: 'border-box' }}>
+              <div style={{ width: '100%', height: '35mm', background: '#16a34a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', padding: '1rem', textAlign: 'center', boxSizing: 'border-box' }}>
                 <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase' }}>{acara.nama}</h3>
                 <p style={{ margin: 0, fontSize: '0.7rem', opacity: 0.9 }}>{new Date(acara.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</p>
               </div>
