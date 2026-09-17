@@ -186,9 +186,14 @@ export default function AdminAnggota() {
               <div style={{ marginTop: 'auto', background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--teks)' }}>Pengaturan KTA</h3>
-                  <button onClick={() => setIsEdit(!isEdit)} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', background: 'white', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>
-                    {isEdit ? 'Batal Edit' : 'Edit KTA'}
-                  </button>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <button onClick={() => handleVerifikasi(a.id, 'DITERIMA', a.kabupaten)} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', background: '#f59e0b', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }} title="Klik untuk mengupdate format nomor KTA ke versi terbaru">
+                      Update Nomor KTA
+                    </button>
+                    <button onClick={() => setIsEdit(!isEdit)} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', background: 'white', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>
+                      {isEdit ? 'Batal Edit' : 'Edit KTA'}
+                    </button>
+                  </div>
                 </div>
                 
                 {isEdit && (
