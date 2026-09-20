@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
-import { CalendarDays, Newspaper, Image as ImageIcon } from 'lucide-react'
+import { CalendarDays, Newspaper, Eye, Image as ImageIcon } from 'lucide-react'
 import { getDirectImageUrl } from '@/lib/image'
 
 export const dynamic = 'force-dynamic'
@@ -53,7 +53,10 @@ export default async function BeritaList() {
                 <div className="card-body">
                   <span className="card-tag">{b.kategori}</span>
                   <h2 className="card-title">{b.judul}</h2>
-                  <div className="card-date" style={{ display: 'flex', alignItems: 'center' }}><CalendarDays size={14} style={{ marginRight: '0.4rem' }} /> {formatTanggal(b.createdAt)}</div>
+                  <div className="card-date" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <span style={{ display: 'flex', alignItems: 'center' }}><CalendarDays size={14} style={{ marginRight: '0.4rem' }} /> {formatTanggal(b.createdAt)}</span>
+                    <span style={{ display: 'flex', alignItems: 'center' }}><Eye size={14} style={{ marginRight: '0.4rem' }} /> {b.dilihat}</span>
+                  </div>
                   <p className="card-text">{b.ringkasan}</p>
                 </div>
               </Link>
