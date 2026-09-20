@@ -6,7 +6,8 @@ import Footer from '@/components/Footer'
 import JadwalSholat from '@/components/JadwalSholat'
 import MimbarUmat from '@/components/MimbarUmat'
 import { useEffect, useState } from 'react'
-import { CalendarDays, GraduationCap, Heart, Users, MapPin } from 'lucide-react'
+import { CalendarDays, GraduationCap, Heart, Users, MapPin, Image as ImageIcon } from 'lucide-react'
+import { getDirectImageUrl } from '@/lib/image'
 
 export default function Home() {
   const [berita, setBerita] = useState([])
@@ -234,7 +235,13 @@ export default function Home() {
           <div className="grid-3">
             {berita.length > 0 ? berita.map(b => (
               <Link key={b.id} href={`/berita/${b.slug}`} className="card">
-                <div className="card-img-placeholder">📰</div>
+                {b.thumbnail ? (
+                  <img src={getDirectImageUrl(b.thumbnail)} alt={b.judul} className="card-img" />
+                ) : (
+                  <div className="card-img-placeholder" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                    <ImageIcon size={48} />
+                  </div>
+                )}
                 <div className="card-body">
                   <span className="card-tag">{b.kategori}</span>
                   <div className="card-title">{b.judul}</div>
